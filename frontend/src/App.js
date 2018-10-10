@@ -7,7 +7,16 @@ import Input from './forms/Form.js';
 class App extends Component {
 
     submit(model){
-        console.log(model)
+        var url = '/registrations/newregistration';
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(model),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success: ', JSON.stringify(response)))
+        .catch(error => console.error('Error: ', error));
     }
 
     render() {
