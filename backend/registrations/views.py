@@ -11,3 +11,5 @@ class NewRegistration(APIView):
         if registration.is_valid():
             registration.save()
             return Response(registration.data)
+        else:
+            return Response('Failed bro')
