@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Formsy from 'formsy-react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Input from './forms/Form.js';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    submit(model){
+        console.log(model)
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <Formsy onValidSubmit={this.submit}>
+                    <Input 
+                        name="first_name"
+                        required
+                    /> 
+                    <Input 
+                        name="last_name"
+                        required
+                    /> 
+                    <Input 
+                        name="email"
+                        validations="isEmail"
+                        validationError="This is not a valid email"
+                        required
+                    /> 
+                    <Input 
+                        name="username"
+                        required
+                    /> 
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </Formsy>
+            </div>
+        );
+    }
 }
 
 export default App;
