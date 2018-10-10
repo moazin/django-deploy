@@ -7,7 +7,7 @@ import Input from './forms/Form.js';
 class App extends Component {
 
     submit(model){
-        var url = '/registrations/newregistration';
+        var url = 'api/registrations/newregistration';
         fetch(url, {
             method: 'POST',
             body: JSON.stringify(model),

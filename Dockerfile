@@ -16,14 +16,15 @@ rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install uwsgi
 
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-COPY nginx-app.conf /etc/nginx/sites-available/default
-COPY supervisor-app.conf /etc/supervisor/conf.d/
-
 COPY backend/requirements.txt /home/docker/code/
 RUN pip3 install -r /home/docker/code/requirements.txt
 
 COPY backend/ /home/docker/code/
+COPY frontend/build/ /home/docker/frontend/
+
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+COPY nginx-app.conf /etc/nginx/sites-available/default
+COPY supervisor-app.conf /etc/supervisor/conf.d/
 
 EXPOSE 80
 
