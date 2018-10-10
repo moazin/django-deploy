@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'registrations',
         'USER': 'pieas',
         'PASSWORD': 'password',
-        'HOST': '172.17.0.3',
+        'HOST': '172.19.0.3',
         'PORT': ''
     }
 }

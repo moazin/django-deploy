@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  postgres:
+    build: postgres
+    image: mypost
+    networks:
+      mynet123:
+        ipv4_address: 172.19.0.3
+  web:
+    build: web
+    image: webapp
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    networks:
+      - mynet123
+  migrations:
+    image: webapp
+    command: python3 /home/docker/code/manage.py migrate
+    depends_on:
+      - postgres
+      - web
+  run:
+    image: webapp
+    command: python3 /home/docker/code/manage.py migrate
+    depends_on:
+      - migrations
+    
+
+
+networks:
+  mynet123:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16

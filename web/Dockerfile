@@ -22,6 +22,8 @@ RUN pip3 install -r /home/docker/code/requirements.txt
 COPY backend/ /home/docker/code/
 COPY frontend/build/ /home/docker/frontend/
 
+# RUN python3 /home/docker/code/manage.py migrate
+
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY nginx-app.conf /etc/nginx/sites-available/default
 COPY supervisor-app.conf /etc/supervisor/conf.d/
