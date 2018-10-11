@@ -30,6 +30,4 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 
 EXPOSE 80
 
-CMD ["supervisord", "-n"]
-
 
